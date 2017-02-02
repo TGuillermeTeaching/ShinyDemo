@@ -1,20 +1,24 @@
-library(shiny)
-
-# Define server logic required to draw a histogram
-shinyServer(function(input, output) {
-
-  # Expression that generates a histogram. The expression is
-  # wrapped in a call to renderPlot to indicate that:
-  #
-  #  1) It is "reactive" and therefore should re-execute automatically
-  #     when inputs change
-  #  2) Its output type is a plot
-
-  output$distPlot <- renderPlot({
-    x    <- faithful[, 2]  # Old Faithful Geyser data
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-  })
-})
+# server.R
+    
+library(maps)
+library(mapproj)
+counties <- readRDS("data/counties.rds")
+source("helpers.R")
+    
+    
+shinyServer(
+  function(input, output) {
+    output$map <- renderPlot({
+      args <- switch(input$var,
+        "Percent White" = list(counties$white, "darkgreen", "% White"),
+        "Percent Black" = list(counties$black, "black", "% Black"),
+        "Percent Hispanic" = list(counties$hispanic, "darkorange", "% Hispanic"),
+        "Percent Asian" = list(counties$asian, "darkviolet", "% Asian"))
+        
+      args$min <- input$range[1]
+      args$max <- input$range[2]
+  
+      do.call(percent_map, args)
+    })
+  }
+)
