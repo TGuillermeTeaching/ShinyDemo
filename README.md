@@ -1,2 +1,2 @@
-# ShinyDemo
-So shiny!
+## Shiny
+[So shiny!](https://shiny.rstudio.com/)
