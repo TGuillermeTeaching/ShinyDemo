@@ -234,7 +234,15 @@ In the mean time I'm going to answer your questions and show you my tips on how 
 These are tips for developing apps beyond the super basic examples and how I go for it.
 I'm by far not good at it but these are the tips I've learned while I developed apps and that I think would have come in handy when I started (they're in no particular order).
  
- * Use 
+ * Use version control. Seriously, that should apply to everything you do but it's so obviously important here: your `ui.R` file will quickly reach thousands of lines of code and it is really easy to make mistakes that break your app entirely and you can spend ages trying to find the mistake (usually a misplaced comma or a duplicated variable name). With a good version control routine, you can easily go back to the version that used to work before you tried to add this cool new feature.
+ 
+ * Test your app. All the time. This goes with the version control tip (always version control and unit test your code, seriously!). Again because it's easy to make mistakes it's important to regularly check if you didn't break anything. You can easily do that by regularly running `runApp(".")` and see if things break.
+ 
+ * Make sure you know what you want to achieve. For me shiny is really exciting and I can lose a decent amount of time implementing options that I won't end up using (e.g. handling colour options but figuring out that I don't need to plot things in the end). The best way to do that is probably to run your analysis in R normally before running it in shiny (i.e. write a script that makes your plot the way you want without shiny first).
+ 
+ * Once you have your script neatly written. Clearly identify the inputs and the outputs. Basically make sure you have a good idea of what are the variables inputs you want (in our simplistic example, the input is the number of taxa but not the type of the tree process - check if that's what you want or not). Same for the outputs (do you want only a plot? do you also want a table?, etc.).
+
+ * Get inspired by the [showcase examples](https://shiny.rstudio.com/gallery/#user-showcase) but get code from the [specific examples](https://shiny.rstudio.com/gallery/#demos) (or stack overflow). I find the showcase examples really inspiring for what can be done but since they have a lot of things going on and are not always written in a didactic way, I find using them rather complicated. On the other hand the specific examples are made especially for the helping you. You can see them as tutorials for specific snippets.
 
 ## Essential links
 
