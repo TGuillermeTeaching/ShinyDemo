@@ -1,24 +1,33 @@
-# ui.R
+## Define the user interface of the app
+ui <- fluidPage(
 
-shinyUI(fluidPage(
-  titlePanel("censusVis"),
-  
+  ## App title
+  titlePanel("ApeApp"),
+
+  ## Sidebar layout with input and output definitions
   sidebarLayout(
+
+    ## Sidebar panel for inputs
     sidebarPanel(
-      helpText("Create demographic maps with 
-        information from the 2010 US Census."),
-    
-      selectInput("var", 
-        label = "Choose a variable to display",
-        choices = c("Percent White", "Percent Black",
-          "Percent Hispanic", "Percent Asian"),
-        selected = "Percent White"),
-    
-      sliderInput("range", 
-        label = "Range of interest:",
-        min = 0, max = 100, value = c(0, 100))
+
+      ## Input: Slider for the number of tips
+                  ## How the variable will be called (input$tips)
+      sliderInput(inputId = "tips",
+                  ## What the user will see
+                  label = "Number of tips:",
+                  ## The bounds of the slider
+                  min = 3,
+                  max = 100,
+                  ## The defaut value of the slider
+                  value = 30)
     ),
-  
-    mainPanel(plotOutput("map"))
+
+    ## Main panel for displaying outputs
+    mainPanel(
+
+      ## Output: A phylo plot
+      plotOutput(outputId = "treeplot")
+
+    )
   )
-))
+)
