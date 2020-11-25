@@ -2,7 +2,11 @@
 ui <- fluidPage(
 
   ## App title
-  titlePanel("ApeApp"),
+  titlePanel("ApeApp"), ## Note this comma here!
+                        ## This is like in a normal function
+                        ## to separate argument. You'll easily
+                        ## forget it so remember to always check
+                        ## it for debugging your app!
 
   ## Sidebar layout with input and output definitions
   sidebarLayout(
@@ -10,16 +14,12 @@ ui <- fluidPage(
     ## Sidebar panel for inputs
     sidebarPanel(
 
-      ## Input: Slider for the number of tips
-                  ## How the variable will be called (input$tips)
-      sliderInput(inputId = "tips",
-                  ## What the user will see
-                  label = "Number of tips:",
-                  ## The bounds of the slider
-                  min = 3,
-                  max = 100,
-                  ## The defaut value of the slider
-                  value = 30)
+      ## Input: A Slider for the number of tips
+      sliderInput(inputId = "tips", ## What the variable is called (input$tips)
+                  label = "Number of tips:", ## What the user will see
+                  min = 3, ## The bounds of the slider
+                  max = 100, ## The bounds of the slider
+                  value = 30) ## The defaut value of the slider
     ),
 
     ## Main panel for displaying outputs
