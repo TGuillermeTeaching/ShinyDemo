@@ -14,19 +14,36 @@ ui <- fluidPage(
     ## Sidebar panel for inputs
     sidebarPanel(
 
-      ## Input: A Slider for the number of tips
-      sliderInput(inputId = "tips", ## What the variable is called (input$tips)
-                  label = "Number of tips:", ## What the user will see
-                  min = 3, ## The bounds of the slider
-                  max = 100, ## The bounds of the slider
-                  value = 30) ## The defaut value of the slider
+      selectInput("plot_type", "Region:", 
+choices = list("Traits at tips",
+               "Trait disparity-through-time",
+               "MNND through time",
+               "Diversification rates")),
+      hr(),
+      helpText("Data from AT&T (1961) The World's Telephones."),
+
+      selectInput("competition", "Competition value:", 
+                  choices = list("0",
+                                 "0.01",
+                                 "0.02",
+                                 "0.04",
+                                 "0.07",
+                                 "0.1")),
+
+      selectInput("selection", "Selection value:", 
+                  choices = list("0",
+                                 "0.01",
+                                 "0.02",
+                                 "0.04",
+                                 "0.07"))
+
     ),
 
     ## Main panel for displaying outputs
     mainPanel(
 
       ## Output: A phylo plot
-      plotOutput(outputId = "treeplot")
+      plotOutput(outputId = "alexplot")
 
     )
   )
@@ -47,21 +64,5 @@ ui <- fluidPage(
 
 
 
-                  # choices = list("Traits at tips",
-                  #                "Trait disparity-through-time",
-                  #                "MNND through time",
-                  #                "Diversification rates")),
-                  
-                  # choices = list("0",
-                  #                "0.01",
-                  #                "0.02",
-                  #                "0.04",
-                  #                "0.07",
-                  #                "0.1")),
 
-                  # choices = list("0",
-                  #                "0.01",
-                  #                "0.02",
-                  #                "0.04",
-                  #                "0.07",
-                  #                "0.1"))
+                  

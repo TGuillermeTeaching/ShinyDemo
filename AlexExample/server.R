@@ -17,20 +17,40 @@
 #################################
 
 ## Loading the packages required
-library(ape)
+library(ggplot2)
+all_plots <- readRDS("all_plots.RDS")
+
 
 ## Define server logic required to simulate and plot the tree
 server <- function(input, output) {
 
   ## Simulate and plot a tree and save it in output$treeplot
-  output$treeplot <- renderPlot({
+  output$alexplot <- renderPlot({
 
     ## Simulate a tree based on an input: the number of tips (input$tips)
-    tree <- rtree(input$tips)
+    plot_type <- switch(input$plot_type,
+                    "Traits at tips" = 1,
+                    "Trait disparity-through-time" = 2,
+                    "MNND through time" = 3,
+                    "Diversification rates" = 4)
+
+    competition <- switch(input$competition,
+                         "0" = 1,
+                         "0.01" = 2,
+                         "0.02" = 3,
+                         "0.04" = 4,
+                         "0.07" = 5,
+                         "0.1" = 6)
+
+    selection <- switch(input$selection,
+                         "0" = 1,
+                         "0.01" = 2,
+                         "0.02" = 3,
+                         "0.04" = 4,
+                         "0.07" = 5)
 
     ## Plotting the tree
-    plot(tree)
-  
+    all_plots[[plot_type]][[competition]][[selection]]
   })
 
 }
@@ -48,20 +68,10 @@ server <- function(input, output) {
 
 
 
-# all_plots <- readRDS("all_plots.RDS")
 
-    # plot_type <- switch(input$plot_type,
-    #                     "Traits at tips" = 1,
-    #                     "Trait disparity-through-time" = 2,
-    #                     "MNND through time" = 3,
-    #                     "Diversification rates" = 4)
-    # competition <- switch(input$competition,
-    #                      "0" = 1,
-    #                      "0.01" = 2,
-    #                      "0.02" = 3,
-    #                      "0.04" = 4,
-    #                      "0.07" = 5,
-    #                      "0.1" = 6)
+
+
+
 
     # selection <- switch(input$selection,
     #                      "0" = 1,
